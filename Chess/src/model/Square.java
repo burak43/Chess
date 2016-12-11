@@ -55,7 +55,7 @@ public class Square
 	}
 
 	/**
-	 * Sets 'occupied' as true
+	 * Sets 'occupied' as true and returns 'occupied'
 	 */
 	public boolean occupy()
 	{
@@ -63,12 +63,13 @@ public class Square
 	}
 	
 	/**
-	 * Sets 'occupied' as false
+	 * Sets 'occupied' as false and returns 'occupied'
+	 * @return new value of 'occupied'
 	 */
 	public boolean withdraw()
 	{
 		this.occupied = false;
-		return true;
+		return this.occupied;
 	}
 	
 	/**

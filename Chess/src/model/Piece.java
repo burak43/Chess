@@ -26,11 +26,15 @@ public abstract class Piece
 	 * it as moved.
 	 * 
 	 * @param newLocation New location of this piece.
+	 * @return a boolean to indicate success of failure
 	 */
-	public void updateLocation(Square newLocation)
+	public boolean updateLocation(Square newLocation)
 	{
+		if( newLocation.getPlacedPiece().getPieceColor() == this.getPieceColor())
+			return false;
 		this.currentLocation = newLocation;
 		this.setMoved();
+		return true;
 	}
 	
 	// getters & setters

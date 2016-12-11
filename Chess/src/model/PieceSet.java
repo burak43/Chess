@@ -40,15 +40,15 @@ public class PieceSet
 		return pieces.add( p);
 	}
 	
+	// getters & setters
 	/**
-	 * @return the number of pieces this peice set contains
+	 * @return the number of pieces this piece set contains
 	 */
 	public int getNumOfPieces()
 	{
 		return pieces.size();
 	}
 	
-	// getters & setters
 	/**
 	 * @return the pieces
 	 */

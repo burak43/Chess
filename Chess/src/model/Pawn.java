@@ -24,6 +24,7 @@ public class Pawn extends Piece
 			this.setImage( new ImageIcon("file:icons/b_pawn.png", "Black Pawn Icon"));
 	}
 
+	// getters & setters
 	/**
 	 * @return whether the pawn is promoted or not
 	 */
