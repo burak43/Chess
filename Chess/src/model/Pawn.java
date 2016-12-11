@@ -7,9 +7,14 @@ public class Pawn extends Piece
 	private boolean promoted;
 	private Piece promotedTo;
 	
-	public Pawn(Color color, Square location, boolean moved)
+	/**
+	 * @param color Color of the piece
+	 * @param location Location of the piece, which is of type Square.
+	 * 					Pass "null" if the piece has not yet been placed to a square
+	 */
+	public Pawn(Color color, Square location)
 	{
-		super(color, location, moved);
+		super(color, location);
 		
 		promoted = false;
 		promotedTo = null;
@@ -33,6 +38,14 @@ public class Pawn extends Piece
 	public void setPromoted(boolean promoted)
 	{
 		this.promoted = promoted;
+	}
+	
+	/**
+	 * @param image the image to set
+	 */
+	public void setImage(ImageIcon image)
+	{
+		super.setImage( image);
 	}
 
 	/**

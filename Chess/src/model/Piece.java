@@ -9,25 +9,39 @@ public abstract class Piece
 	private boolean moved;
 	private ImageIcon image;
 	
-	public Piece( Color color, Square location, boolean moved)
+	/**
+	 * @param color Color of the piece
+	 * @param location Location of the piece, which is of type Square.
+	 * 					Pass "null" if the piece has not yet been placed to a square
+	 */
+	public Piece( Color color, Square location)
 	{
 		pieceColor = color;
 		currentLocation = location;
-		this.moved = moved;
 	}
 
 	// methods
+	/**
+	 * Updates the current location of this piece and marks
+	 * it as moved.
+	 * 
+	 * @param newLocation New location of this piece.
+	 */
 	public void updateLocation(Square newLocation)
 	{
 		this.currentLocation = newLocation;
+		this.setMoved();
 	}
 	
+	// getters & setters
+	/**
+	 * @return the moved
+	 */
 	public boolean isMoved()
 	{
 		return this.moved;
 	}
 	
-	// getters & setters
 	/**
 	 * @return the pieceColor
 	 */
@@ -51,7 +65,18 @@ public abstract class Piece
 	{
 		return currentLocation;
 	}
+	
+	/**
+	 * @param location the location to set
+	 */
+	public void setCurrentLocation( Square location)
+	{
+		this.currentLocation = location;
+	}
 
+	/**
+	 * Marks the piece as moved.
+	 */
 	public void setMoved()
 	{
 		this.moved = true;
