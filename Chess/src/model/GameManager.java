@@ -1,8 +1,5 @@
 package model;
 
-import jdk.nashorn.internal.runtime.linker.JavaAdapterFactory;
-import jdk.nashorn.internal.runtime.regexp.joni.Syntax;
-
 /**
  * Created by berkabbasoglu on 18/12/2016.
  */
@@ -23,7 +20,7 @@ public class GameManager {
         paused = false;
 
         // correct param
-        board = new Board(null);
+        board = new Board(null);	// boardImage needs to be passed instead of "null" !!!
         movementManager = new MovementManager(board);
     }
 

@@ -1,9 +1,5 @@
 package model;
 
-import java.time.Period;
-import java.util.Map;
-import java.util.regex.Matcher;
-
 /**
  * Created by berkabbasoglu on 18/12/2016.
  */
@@ -116,7 +112,7 @@ public class MovementManager {
 
             if (currentLoc.equals(destination))
                 return true;
-
+            
             return !(board.getSquareAtLoc(currentLoc.getRow(), targetColumn).isOccupied()) && isMoveableRook(destination, currentLoc);
         }
 
@@ -148,13 +144,16 @@ public class MovementManager {
                 Math.abs(currentLoc.getRow() - destination.getRow()) == 1) {
             return true;
         }
-        else if (Math.abs(currentLoc.getRow() - destination.getRow()) == 1 &&
+        
+       // No need for belows. They are same as aboves !!
+        
+       /* else if (Math.abs(currentLoc.getRow() - destination.getRow()) == 1 &&
                 Math.abs(currentLoc.getColumn() - destination.getColumn()) == 2)
             return true;
         else if (Math.abs(currentLoc.getColumn() - destination.getColumn()) == 1 &&
                 Math.abs(currentLoc.getRow() - destination.getRow()) == 2) {
             return true;
-        }
+        }*/
 
         return false;
 
@@ -233,35 +232,15 @@ public class MovementManager {
     private boolean isMoveableKing(Square destination, Square currentLoc) {
 
         if (destination.getColumn() == currentLoc.getColumn() &&
-                (destination.getRow() - currentLoc.getRow() == 1))
+                Math.abs(destination.getRow() - currentLoc.getRow()) == 1)
             return true;
 
-        else if ((destination.getColumn() - currentLoc.getColumn() == 1 )&&
+        else if ((Math.abs(destination.getColumn() - currentLoc.getColumn()) == 1 )&&
                 destination.getRow() == currentLoc.getRow())
             return true;
 
-        if (destination.getColumn() == currentLoc.getColumn() &&
-                (currentLoc.getRow() - destination.getRow() == 1))
-            return true;
-
-        else if ((currentLoc.getColumn() - destination.getColumn() == 1 )&&
-                destination.getRow() == currentLoc.getRow())
-            return true;
-
-        else if ((currentLoc.getColumn() - destination.getColumn() == 1 )&&
-                (currentLoc.getRow() - destination.getRow() == 1))
-            return true;
-
-        else if ((destination.getColumn() - currentLoc.getColumn() == 1 )&&
-                (currentLoc.getRow() - destination.getRow() == 1))
-            return true;
-
-        else if ((currentLoc.getColumn() - destination.getColumn() == 1 )&&
-                (destination.getRow() - currentLoc.getRow() == 1))
-            return true;
-
-        else if ((destination.getColumn() - currentLoc.getColumn() == 1 )&&
-                (destination.getRow() - currentLoc.getRow() == 1))
+        else if ((Math.abs(currentLoc.getColumn() - destination.getColumn()) == 1 )&&
+                (Math.abs(currentLoc.getRow() - destination.getRow()) == 1))
             return true;
 
         return false;
@@ -356,7 +335,13 @@ public class MovementManager {
 
                 Queen queen = new Queen(color, pawnLoc);
                 pawnLoc.placePiece(queen);
-
+                
+                /*
+                 * Here pawn still remains in the pieceSet of the player. Even worse,
+                 * you do not add the new piece, which is a queen, to the peiceSet of the player.
+                 * It may or may not cause a problem !!!
+                 */
+                
                 return true;
 
             }
