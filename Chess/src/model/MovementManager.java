@@ -347,7 +347,20 @@ public class MovementManager {
 
     public boolean addPiece(Piece piece) {
 
-        //// TODO: 18/12/2016  
+        if (piece instanceof Pawn) {
+            if (((Pawn) piece).isPromoted()) {
+
+                Square pawnLoc = piece.getCurrentLocation();
+                Color color = piece.getPieceColor();
+                removePiece(piece);
+
+                Queen queen = new Queen(color, pawnLoc);
+                pawnLoc.placePiece(queen);
+
+                return true;
+
+            }
+        }
         return false;
     }
 
