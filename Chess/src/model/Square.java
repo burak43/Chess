@@ -39,8 +39,8 @@ public class Square
 	 */
 	public boolean placePiece(Piece p)
 	{
-		if( placedPiece.getPieceColor() == p.getPieceColor())
-			return false;
+		//if( placedPiece.getPieceColor() == p.getPieceColor())
+			//return false;
 		placedPiece = p;
 		return this.occupy();
 	}
@@ -94,6 +94,18 @@ public class Square
 	public char getColumn()
 	{
 		return column;
+	}
+
+	public void setRow(int i) {
+		this.row = i;
+	}
+
+	public void setColumn(char c) {
+		this.column = c;
+	}
+
+	public boolean equals(Square s) {
+		return this.getRow() == s.getRow() && this.getColumn() == s.getColumn();
 	}
 
 }
