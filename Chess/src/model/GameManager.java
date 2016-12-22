@@ -39,13 +39,18 @@ public class GameManager {
         // create game manager
         GameManager gm = new GameManager(players);
 
-        // place a knight
+        // place a queen
+        Queen queen = new Queen(Color.BLACK, null);
+        queen.setCurrentLocation(gm.board.getSquareAtLoc(4, 'D'));
+        gm.board.getSquareAtLoc(4, 'D').placePiece(queen);
+
+        // place a king
         King king= new King(Color.WHITE, null);
         king.setCurrentLocation(gm.board.getSquareAtLoc(3, 'C'));
         gm.board.getSquareAtLoc(3, 'C').placePiece(king);
 
         // print all paths
-        Square[] allSq = gm.movementManager.validMoves(king);
+        /*Square[] allSq = gm.movementManager.validMoves(king);
         for (int i = 0; i < 64; i++) {
 
             if (allSq[i] == null)
@@ -53,9 +58,15 @@ public class GameManager {
             else
                 System.out.println("The knight CAN move to " + allSq[i].getRow() + allSq[i].getColumn());
 
-        }
+        } */
 
-        gm.placeObjects();
+        if (gm.isChecked(p2, queen))
+            System.out.println("Queen checks the king!");
+
+        if (gm.isCheckmated(p1))
+            System.out.println("P1 CHECKMATED");
+
+
 
         // try moving a rook -> the rook moves!
         /*Square target = gm.board.getSquareAtLoc(2, 'A');
@@ -80,18 +91,40 @@ public class GameManager {
 
     }
 
-    public boolean isChecked(Player player) {
-        //// TODO: 19/12/2016
+    public boolean isChecked(Player player, Piece piece) {
+
+        // make sure king and piece colours are different
+        if (player.getColor() == piece.getPieceColor())
+            return false;
+
+        Square[] allRoutes = movementManager.validMoves(piece);
+        for (int i = 0; i < 64; i++) {
+            if (allRoutes[i] == null) {
+                break;
+            }
+            else if (allRoutes[i].getPlacedPiece() instanceof King)
+                return true;
+
+        }
+
         return false;
     }
 
     public boolean isCheckmated(Player player) {
-        //// TODO: 19/12/2016
-        return false;
-    }
 
-    public void create() {
+        for( int i = 1; i < 9; i++) {
+            for (int j = 0; j < 8; j++) {
+                char column = (char) ('A' + j);
+                if (board.getSquareAtLoc(i, column).getPlacedPiece() instanceof King) {
 
+                    if (board.getSquareAtLoc(i, column).getPlacedPiece().getPieceColor() == player.getColor()) {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        return true;
     }
 
     public boolean isEnded() {
@@ -213,7 +246,7 @@ public class GameManager {
         board.getSquareAtLoc(7, 'D').placePiece(queenBlack);
 
         // place white king
-        King kingBlack = new King(Color.WHITE, null);
+        King kingBlack = new King(Color.BLACK, null);
         Square square7E = new Square(7, 'E', kingBlack);
         kingBlack.setCurrentLocation(square7E);
         board.getSquareAtLoc(7, 'E').placePiece(kingBlack);
@@ -240,12 +273,14 @@ public class GameManager {
         paused = false;
     }
 
-    public void endGame() {
-        paused = false;
+    public void endGame(Player player) {
+        paused = true;
 
         if (isCheckmated(players[0]))
             result = players[1].getName() + " is the Winner!";
-        else
+        else if (isCheckmated(players[1]))
             result = players[0].getName() + " is the Winner!";
+        else
+            result = "The game ended with Stalemate!";
     }
 }

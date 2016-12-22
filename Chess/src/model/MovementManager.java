@@ -16,7 +16,10 @@ public class MovementManager {
     }
 
     public boolean isCaptured(Piece piece) {
-        //todo
+
+        if (piece.getCurrentLocation() == null)
+            return true;
+
         return false;
     }
 
@@ -294,7 +297,6 @@ public class MovementManager {
 
     public Square[] validMoves(Piece piece) {
 
-        Square currentLoc = piece.getCurrentLocation();
         Square[] allSquares = new Square[64];
         int count = 0;
 
@@ -340,7 +342,7 @@ public class MovementManager {
     public boolean removePiece(Piece piece) {
 
         piece.updateLocation(null);
-        return piece.getCurrentLocation().withdraw();
+        return !piece.getCurrentLocation().withdraw();
     }
 
     public boolean addPiece(Piece piece) {
