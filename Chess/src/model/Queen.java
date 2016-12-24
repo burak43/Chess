@@ -2,21 +2,21 @@ package model;
 
 import javax.swing.ImageIcon;
 
-public class Queen extends Piece
-{
+public class Queen extends Piece {
 
 	/**
-	 * @param color Color of the piece
-	 * @param location Location of the piece, which is of type Square.
-	 * 					Pass "null" if the piece has not yet been placed to a square
+	 * @param color
+	 *            Color of the piece
+	 * @param location
+	 *            Location of the piece, which is of type Square. Pass "null" if
+	 *            the piece has not yet been placed to a square
 	 */
-	public Queen(Color color, Square location)
-	{
+	public Queen(Color color, Square location) {
 		super(color, location);
-		if( color == Color.WHITE)
-			this.setImage( new ImageIcon("file:icons/w_queen.png", "White Queen Icon"));
+		if (color == Color.WHITE)
+			this.setImage(new ImageIcon("file:icons/w_queen.png", "White Queen Icon"));
 		else
-			this.setImage( new ImageIcon("file:icons/b_queen.png", "Black Queen Icon"));
+			this.setImage(new ImageIcon("file:icons/b_queen.png", "Black Queen Icon"));
 	}
 
 }
