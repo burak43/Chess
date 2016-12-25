@@ -32,8 +32,9 @@ public class MainMenu extends JPanel {
 		frame.setVisible(true);
 	}
 
-	public static void startGame() {
-		System.out.println("start");
+	public static void startGame(MainMenuPanel mc, JFrame frame) {
+		mc.eleman = 1;
+		frame.repaint();
 	}
 
 	public static void exitGame() {

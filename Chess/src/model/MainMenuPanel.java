@@ -18,6 +18,8 @@ public class MainMenuPanel extends JComponent {
 	public boolean sett_brownback;
 	public boolean sett_showlegal;
 
+	public boolean settings_from_pause_menu = false;
+	
 	MainMenuPanel(int e) {
 		eleman = e;
 	}
@@ -29,7 +31,11 @@ public class MainMenuPanel extends JComponent {
 		Image _myimage = icon.getImage();
 		g.drawImage(_myimage, 0, 0, this.getWidth(), this.getHeight(), null);
 
-		if (eleman == 2) {
+		if (eleman == 1) {
+
+			GamePanel.draw(g, this);
+
+		} else if (eleman == 2) {
 
 			HighScorePanel.draw(g);
 
@@ -60,6 +66,10 @@ public class MainMenuPanel extends JComponent {
 
 			g.drawString("Back", 100, 600);
 
+		} else if (eleman == 7) {
+			
+			PauseMenuPanel.draw(g);
+			
 		} else {
 
 			Font myFont = new Font("Courier New", 1, 50);

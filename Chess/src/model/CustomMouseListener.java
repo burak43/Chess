@@ -63,8 +63,14 @@ public class CustomMouseListener implements MouseListener {
 				frame.repaint();
 
 			} else if (x > 100 && x < 250 && y > 600 && y < 650) {
-				mc.eleman = 0;
-				frame.repaint();
+				if (mc.settings_from_pause_menu) {
+					mc.settings_from_pause_menu = false;
+					mc.eleman = 7;
+					frame.repaint();
+				} else {
+					mc.eleman = 0;
+					frame.repaint();
+				}
 			}
 		} else if (mc.eleman == 4) {
 			if (x > 100 && x < 250 && y > 600 && y < 650) {
@@ -81,9 +87,21 @@ public class CustomMouseListener implements MouseListener {
 				mc.eleman = 0;
 				frame.repaint();
 			}
+		} else if (mc.eleman == 7) {
+			if (x > 200 && x < 500 && y > 195 && y < 225) {
+				mc.eleman = 1;
+				frame.repaint();
+			} else if (x > 200 && x < 500 && y > 235 && y < 275) {
+				mc.settings_from_pause_menu = true;
+				Menu.displaySettings(mc, frame);
+			} else if (x > 200 && x < 500 && y > 285 && y < 325) {
+				mc.eleman = 0;
+				frame.repaint();
+			} else if (x > 200 && x < 320 && y > 335 && y < 375) {
+				MainMenu.exitGame();
+			}
 		}
-
-		// System.out.println(madde + e.getX()+", "+e.getY());
+		
 	}
 
 	@Override
