@@ -32,7 +32,7 @@ public class CustomKeyListener implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 
 		if (dm.eleman == 6) {
-		
+
 			if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 				if (n2 && dm.name2.length() > 0) {
 					MainMenu.startGame(dm, frame);
@@ -41,7 +41,7 @@ public class CustomKeyListener implements KeyListener {
 					n2 = true;
 				}
 			} else if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-	
+
 				if (!n2) {
 					int end = dm.name1.length() - 1;
 					if (end < 0) {
@@ -55,32 +55,33 @@ public class CustomKeyListener implements KeyListener {
 					}
 					dm.name2 = dm.name2.substring(0, end);
 				}
-	
+
 				frame.repaint();
-	
+
 			} else {
-	
+
 				if (!n2) {
 					dm.name1 += (char) e.getKeyCode();
 				} else {
 					dm.name2 += (char) e.getKeyCode();
 				}
-	
+
 				frame.repaint();
-	
+
 			}
-		
+
 		} else if (dm.eleman == 1) {
-		
-			if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
+
+			if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 				dm.eleman = 7;
 				frame.repaint();
 			}
-		
+
 		}
 	}
 
 	@Override
-	public void keyReleased(KeyEvent e) {}
-	
+	public void keyReleased(KeyEvent e) {
+	}
+
 }

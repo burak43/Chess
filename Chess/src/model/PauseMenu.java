@@ -11,7 +11,7 @@ public class PauseMenu {
 		g.setFont(myFont);
 		g.setColor(Color.WHITE);
 		g.drawString("Pause Menu", 300, 100);
-		
+
 		Font myFont2 = new Font("Courier New", 1, 35);
 		g.setFont(myFont2);
 		g.drawString("Continue Game", 200, 200);

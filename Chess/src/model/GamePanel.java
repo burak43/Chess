@@ -12,5 +12,5 @@ public class GamePanel {
 		Image _myimage = icon.getImage();
 		g.drawImage(_myimage, 0, 0, 720, 720, null);
 	}
-	
+
 }

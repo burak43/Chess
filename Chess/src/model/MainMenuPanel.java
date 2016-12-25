@@ -19,7 +19,7 @@ public class MainMenuPanel extends JComponent {
 	public boolean sett_showlegal;
 
 	public boolean settings_from_pause_menu = false;
-	
+
 	MainMenuPanel(int e) {
 		eleman = e;
 	}
@@ -67,9 +67,9 @@ public class MainMenuPanel extends JComponent {
 			g.drawString("Back", 100, 600);
 
 		} else if (eleman == 7) {
-			
+
 			PauseMenuPanel.draw(g);
-			
+
 		} else {
 
 			Font myFont = new Font("Courier New", 1, 50);
