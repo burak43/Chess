@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -28,7 +29,10 @@ public class MainMenu extends JPanel {
 
 		frame.add(mc);
 
+		frame.setLocation(50, 50);
 		frame.setSize(720, 720);
+		frame.setResizable(false);
+		frame.setUndecorated(true);
 		frame.setVisible(true);
 	}
 

@@ -29,7 +29,7 @@ public class MainMenuPanel extends JComponent {
 
 		ImageIcon icon = new ImageIcon("icons/stockvault-glass-chess137890.jpg");
 		Image _myimage = icon.getImage();
-		g.drawImage(_myimage, 0, 0, this.getWidth(), this.getHeight(), null);
+		g.drawImage(_myimage, 0, 0, 720, 720, null);
 
 		if (eleman == 1) {
 

@@ -18,11 +18,20 @@ public class CustomMouseListener implements MouseListener {
 		this.ckl = ckl;
 	}
 
+	public void handleGameBoardClick(int x, int y) {
+		
+	}
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		int y = e.getY();
+		int y0 = e.getY();
+		int y = y0 + 22; // written on mac so to correct border offset, 22 added
 		int x = e.getX();
 
+		handleGameBoardClick(x, y0); // no need to add 22 because from now on new codes will be written considering window with no border
+		
+		System.out.println(y + "_" + x);
+		
 		if (mc.eleman == 0) {
 
 			if (x > 300 && x < 600 && y > 145 && y < 175) {
@@ -97,7 +106,7 @@ public class CustomMouseListener implements MouseListener {
 			} else if (x > 200 && x < 500 && y > 285 && y < 325) {
 				mc.eleman = 0;
 				frame.repaint();
-			} else if (x > 200 && x < 320 && y > 335 && y < 375) {
+			} else if (x > 200 && x < 400 && y > 335 && y < 375) {
 				MainMenu.exitGame();
 			}
 		}
