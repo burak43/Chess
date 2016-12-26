@@ -111,7 +111,7 @@ public class GameManager {
 		}
 
 		return true;
-		
+
 	}
 
 	public boolean isEnded() {
@@ -128,7 +128,7 @@ public class GameManager {
 		}
 
 		return null;
-		
+
 	}
 
 	public void placeObjects() {
@@ -248,7 +248,7 @@ public class GameManager {
 			board.getSquareAtLoc(8, column).placePiece(pawn);
 
 		}
-		
+
 	}
 
 	public void pauseGame() {

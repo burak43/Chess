@@ -14,7 +14,7 @@ public class MovementManager {
 			return true;
 
 		return false;
-		
+
 	}
 
 	public boolean isMoveable(Piece piece, Square destination) {
@@ -83,7 +83,7 @@ public class MovementManager {
 		}
 
 		return false;
-		
+
 	}
 
 	// recursively find if rook's path is clear
@@ -142,7 +142,7 @@ public class MovementManager {
 				&& Math.abs(currentLoc.getRow() - destination.getRow()) == 1) {
 			return true;
 		}
-	
+
 		return false;
 
 	}
@@ -226,7 +226,7 @@ public class MovementManager {
 			return true;
 
 		return false;
-	
+
 	}
 
 	private boolean isMoveablePawn(Square destination, Square currentLoc, Color color) {
@@ -240,7 +240,7 @@ public class MovementManager {
 					&& (destination.getColumn() == currentLoc.getColumn())) {
 				return !destination.isOccupied();
 			}
-			
+
 		} else {
 
 			if (Math.abs(destination.getColumn() - currentLoc.getColumn()) == 1
@@ -252,7 +252,7 @@ public class MovementManager {
 					&& (destination.getColumn() == currentLoc.getColumn())) {
 				return !destination.isOccupied();
 			}
-		
+
 		}
 
 		return false;
@@ -277,7 +277,7 @@ public class MovementManager {
 		}
 
 		return allSquares;
-	
+
 	}
 
 	public boolean isPromoted(Pawn pawn) {
@@ -299,14 +299,14 @@ public class MovementManager {
 			return true;
 
 		return false;
-	
+
 	}
 
 	public boolean removePiece(Piece piece) {
 
 		piece.updateLocation(null);
 		return !piece.getCurrentLocation().withdraw();
-		
+
 	}
 
 	public boolean addPiece(Piece piece) {
@@ -331,9 +331,9 @@ public class MovementManager {
 
 			}
 		}
-		
+
 		return false;
-	
+
 	}
 
 }
