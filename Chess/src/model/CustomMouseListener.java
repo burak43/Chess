@@ -20,6 +20,12 @@ public class CustomMouseListener implements MouseListener {
 
 	public void handleGameBoardClick(int x, int y) {
 
+		int row = (8 - ((int) (y / 90)));
+
+		char col = ((char) (65 + ((int) (x / 90))));
+
+		System.out.println(col + " - " + row);
+
 	}
 
 	@Override
@@ -27,10 +33,6 @@ public class CustomMouseListener implements MouseListener {
 		int y0 = e.getY();
 		int y = y0 + 22; // written on mac so to correct border offset, 22 added
 		int x = e.getX();
-
-		handleGameBoardClick(x, y0); // no need to add 22 because from now on
-										// new codes will be written considering
-										// window with no border
 
 		if (mc.eleman == 0) {
 
@@ -57,6 +59,12 @@ public class CustomMouseListener implements MouseListener {
 				MainMenu.exitGame();
 			} else
 				madde = "";
+
+		} else if (mc.eleman == 1) {
+
+			handleGameBoardClick(x, y0); // no need to add 22 because from now
+											// on new codes will be written
+											// considering window with no border
 
 		} else if (mc.eleman == 2) {
 			if (x > 100 && x < 250 && y > 600 && y < 650) {
