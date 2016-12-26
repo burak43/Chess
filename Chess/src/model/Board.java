@@ -1,23 +1,10 @@
 package model;
 
-/**
- * @author Burak Mandira
- * @date Dec 10, 2016
- *
- */
-
-import javax.swing.ImageIcon;
-
 public class Board {
 	public Square[][] squares;
 	private PieceSet[] pieceSets;
-	private ImageIcon boardImage;
 
-	/**
-	 * @param boardImage
-	 *            the boardImage of this board
-	 */
-	public Board(ImageIcon boardImage) {
+	public Board() {
 		squares = new Square[8][8];
 		for (int i = 0; i < 8; i++) {
 			int row = i + 1;
@@ -30,10 +17,8 @@ public class Board {
 		pieceSets = new PieceSet[2];
 		pieceSets[0] = new PieceSet(Color.WHITE);
 		pieceSets[1] = new PieceSet(Color.BLACK);
-		this.boardImage = boardImage;
 	}
 
-	// getters & setters
 	/**
 	 * @param color
 	 *            the player's color whose pieceSet is wanted.
@@ -44,21 +29,6 @@ public class Board {
 			return pieceSets[0];
 		else
 			return pieceSets[1];
-	}
-
-	/**
-	 * @return the boardImage
-	 */
-	public ImageIcon getBoardImage() {
-		return boardImage;
-	}
-
-	/**
-	 * @param boardImage
-	 *            the boardImage to set
-	 */
-	public void setBoardImage(ImageIcon boardImage) {
-		this.boardImage = boardImage;
 	}
 
 	public Square getSquareAtLoc(int i, char c) {

@@ -14,9 +14,9 @@ public class King extends Piece {
 	public King(Color color, Square location) {
 		super(color, location);
 		if (color == Color.WHITE)
-			this.setImage(new ImageIcon("file:icons/w_king.png", "White King Icon"));
+			this.setImage(new ImageIcon("icons/w_king.png", "White King Icon"));
 		else
-			this.setImage(new ImageIcon("file:icons/b_king.png", "Black King Icon"));
+			this.setImage(new ImageIcon("icons/b_king.png", "Black King Icon"));
 	}
 
 }

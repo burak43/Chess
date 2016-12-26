@@ -1,11 +1,5 @@
 package model;
 
-/**
- * @author Burak Mandira
- * @date Dec 9, 2016
- *
- */
-
 import java.util.ArrayList;
 
 public class PieceSet {
@@ -21,7 +15,6 @@ public class PieceSet {
 		this.playerColor = playerColor;
 	}
 
-	// methods
 	/**
 	 * @param p
 	 *            the piece which will be removed from this piece set
@@ -40,7 +33,6 @@ public class PieceSet {
 		return pieces.add(p);
 	}
 
-	// getters & setters
 	/**
 	 * @return the number of pieces this piece set contains
 	 */

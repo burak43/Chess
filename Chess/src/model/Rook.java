@@ -14,9 +14,9 @@ public class Rook extends Piece {
 	public Rook(Color color, Square location) {
 		super(color, location);
 		if (color == Color.WHITE)
-			this.setImage(new ImageIcon("file:icons/w_rook.png", "White Rook Icon"));
+			this.setImage(new ImageIcon("icons/w_rook.png", "White Rook Icon"));
 		else
-			this.setImage(new ImageIcon("file:icons/b_rook.png", "Black Rook Icon"));
+			this.setImage(new ImageIcon("icons/b_rook.png", "Black Rook Icon"));
 	}
 
 }

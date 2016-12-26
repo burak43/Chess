@@ -3,6 +3,7 @@ package model;
 import javax.swing.ImageIcon;
 
 public class Pawn extends Piece {
+
 	private boolean promoted;
 	private Piece promotedTo;
 
@@ -19,12 +20,11 @@ public class Pawn extends Piece {
 		promoted = false;
 		promotedTo = null;
 		if (color == Color.WHITE)
-			this.setImage(new ImageIcon("file:icons/w_pawn.png", "White Pawn Icon"));
+			this.setImage(new ImageIcon("icons/w_pawn.png", "White Pawn Icon"));
 		else
-			this.setImage(new ImageIcon("file:icons/b_pawn.png", "Black Pawn Icon"));
+			this.setImage(new ImageIcon("icons/b_pawn.png", "Black Pawn Icon"));
 	}
 
-	// getters & setters
 	/**
 	 * @return whether the pawn is promoted or not
 	 */
@@ -58,7 +58,7 @@ public class Pawn extends Piece {
 
 	/**
 	 * @param promotedTo
-	 *            a peice that the pawn is promoted to
+	 *            a piece that the pawn is promoted to
 	 */
 	public void setPromotedTo(Piece promotedTo) {
 		this.promotedTo = promotedTo;

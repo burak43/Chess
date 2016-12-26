@@ -1,8 +1,5 @@
 package model;
 
-/**
- * Created by berkabbasoglu on 18/12/2016.
- */
 public class Player {
 
 	private String name;
@@ -28,4 +25,5 @@ public class Player {
 	public void setColor(Color color) {
 		this.color = color;
 	}
+
 }

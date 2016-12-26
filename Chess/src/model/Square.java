@@ -1,11 +1,5 @@
 package model;
 
-/**
- * @author Burak Mandira
- * @date Dec 9, 2016
- *
- */
-
 public class Square {
 	private int row;
 	private char column;
@@ -30,7 +24,6 @@ public class Square {
 			this.occupied = true;
 	}
 
-	// methods
 	/**
 	 * Places a piece to this square and marks it as occupied
 	 * 
@@ -39,13 +32,10 @@ public class Square {
 	 * @return a boolean that indicates success or failure
 	 */
 	public boolean placePiece(Piece p) {
-		// if( placedPiece.getPieceColor() == p.getPieceColor())
-		// return false;
 		placedPiece = p;
 		return this.occupy();
 	}
 
-	// getters & setters
 	/**
 	 * @return the placedPiece
 	 */

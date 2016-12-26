@@ -1,8 +1,5 @@
 package model;
 
-/**
- * Created by berkabbasoglu on 18/12/2016.
- */
 public class GameManager {
 
 	public Color turn;
@@ -19,30 +16,25 @@ public class GameManager {
 		result = "not finished";
 		paused = false;
 
-		// correct param
-		board = new Board(null); // boardImage needs to be passed instead of
-									// "null" !!!
+		board = new Board();
+
 		movementManager = new MovementManager(board);
 	}
 
 	public static void main(String[] args) {
 
-		// create players
 		Player p1 = new Player("Joe", Color.WHITE);
 		Player p2 = new Player("Buck", Color.BLACK);
 		Player[] players = new Player[2];
 		players[0] = p1;
 		players[1] = p2;
 
-		// create game manager
 		GameManager gm = new GameManager(players);
 
-		// place a queen
 		Queen queen = new Queen(Color.BLACK, null);
 		queen.setCurrentLocation(gm.board.getSquareAtLoc(4, 'D'));
 		gm.board.getSquareAtLoc(4, 'D').placePiece(queen);
 
-		// place a king
 		King king = new King(Color.WHITE, null);
 		king.setCurrentLocation(gm.board.getSquareAtLoc(3, 'C'));
 		gm.board.getSquareAtLoc(3, 'C').placePiece(king);
@@ -89,7 +81,6 @@ public class GameManager {
 
 	public boolean isChecked(Player player, Piece piece) {
 
-		// make sure king and piece colours are different
 		if (player.getColor() == piece.getPieceColor())
 			return false;
 
@@ -120,6 +111,7 @@ public class GameManager {
 		}
 
 		return true;
+		
 	}
 
 	public boolean isEnded() {
@@ -136,6 +128,7 @@ public class GameManager {
 		}
 
 		return null;
+		
 	}
 
 	public void placeObjects() {
@@ -198,9 +191,6 @@ public class GameManager {
 		king.setCurrentLocation(square2E);
 		board.getSquareAtLoc(2, 'E').placePiece(king);
 
-		// WHITE DONE
-		// ONTO BLACK
-
 		// place black rooks
 		Rook rook3 = new Rook(Color.BLACK, null);
 		Square square7A = new Square(7, 'A', rook3);
@@ -258,6 +248,7 @@ public class GameManager {
 			board.getSquareAtLoc(8, column).placePiece(pawn);
 
 		}
+		
 	}
 
 	public void pauseGame() {
@@ -278,4 +269,5 @@ public class GameManager {
 		else
 			result = "The game ended with Stalemate!";
 	}
+
 }

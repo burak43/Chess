@@ -1,8 +1,5 @@
 package model;
 
-/**
- * Created by berkabbasoglu on 18/12/2016.
- */
 public class MovementManager {
 
 	private Board board;
@@ -17,6 +14,7 @@ public class MovementManager {
 			return true;
 
 		return false;
+		
 	}
 
 	public boolean isMoveable(Piece piece, Square destination) {
@@ -24,8 +22,6 @@ public class MovementManager {
 		Square currentLoc = new Square(piece.getCurrentLocation().getRow(), piece.getCurrentLocation().getColumn(),
 				piece.getCurrentLocation().getPlacedPiece());
 
-		// make sure destination is within board, doesn't conflict with a piece
-		// of the same colour and is not the same as currentloc
 		if (destination.getColumn() > 'H')
 			return false;
 		if (destination.getRow() > 8)
@@ -87,6 +83,7 @@ public class MovementManager {
 		}
 
 		return false;
+		
 	}
 
 	// recursively find if rook's path is clear
@@ -116,9 +113,7 @@ public class MovementManager {
 
 			return !(board.getSquareAtLoc(currentLoc.getRow(), targetColumn).isOccupied())
 					&& isMoveableRook(destination, currentLoc);
-		}
-
-		else {
+		} else {
 			int targetRow = currentLoc.getRow();
 
 			if (destination.getRow() > currentLoc.getRow())
@@ -147,17 +142,7 @@ public class MovementManager {
 				&& Math.abs(currentLoc.getRow() - destination.getRow()) == 1) {
 			return true;
 		}
-
-		// No need for belows. They are same as aboves !!
-
-		/*
-		 * else if (Math.abs(currentLoc.getRow() - destination.getRow()) == 1 &&
-		 * Math.abs(currentLoc.getColumn() - destination.getColumn()) == 2)
-		 * return true; else if (Math.abs(currentLoc.getColumn() -
-		 * destination.getColumn()) == 1 && Math.abs(currentLoc.getRow() -
-		 * destination.getRow()) == 2) { return true; }
-		 */
-
+	
 		return false;
 
 	}
@@ -183,9 +168,7 @@ public class MovementManager {
 
 			return !(board.getSquareAtLoc(targetRow, targetColumn).isOccupied())
 					&& isMoveableBishop(destination, currentLoc);
-		}
-
-		else if (currentLoc.getColumn() < destination.getColumn() && currentLoc.getRow() > destination.getRow()) {
+		} else if (currentLoc.getColumn() < destination.getColumn() && currentLoc.getRow() > destination.getRow()) {
 			targetColumn++;
 			targetRow--;
 
@@ -197,9 +180,7 @@ public class MovementManager {
 
 			return !(board.getSquareAtLoc(targetRow, targetColumn).isOccupied())
 					&& isMoveableBishop(destination, currentLoc);
-		}
-
-		else if (currentLoc.getColumn() > destination.getColumn() && currentLoc.getRow() < destination.getRow()) {
+		} else if (currentLoc.getColumn() > destination.getColumn() && currentLoc.getRow() < destination.getRow()) {
 			targetColumn--;
 			targetRow++;
 
@@ -211,9 +192,7 @@ public class MovementManager {
 
 			return !(board.getSquareAtLoc(targetRow, targetColumn).isOccupied())
 					&& isMoveableBishop(destination, currentLoc);
-		}
-
-		else if (currentLoc.getColumn() > destination.getColumn() && currentLoc.getRow() > destination.getRow()) {
+		} else if (currentLoc.getColumn() > destination.getColumn() && currentLoc.getRow() > destination.getRow()) {
 			targetColumn--;
 			targetRow--;
 
@@ -247,6 +226,7 @@ public class MovementManager {
 			return true;
 
 		return false;
+	
 	}
 
 	private boolean isMoveablePawn(Square destination, Square currentLoc, Color color) {
@@ -256,15 +236,12 @@ public class MovementManager {
 			if ((Math.abs(destination.getColumn() - currentLoc.getColumn())) == 1
 					&& ((destination.getRow() - currentLoc.getRow()) == 1)) {
 				return destination.isOccupied();
-			}
-
-			else if ((destination.getRow() - currentLoc.getRow() == 1)
+			} else if ((destination.getRow() - currentLoc.getRow() == 1)
 					&& (destination.getColumn() == currentLoc.getColumn())) {
 				return !destination.isOccupied();
 			}
-		}
-
-		else {
+			
+		} else {
 
 			if (Math.abs(destination.getColumn() - currentLoc.getColumn()) == 1
 					&& currentLoc.getRow() - destination.getRow() == 1) {
@@ -275,9 +252,11 @@ public class MovementManager {
 					&& (destination.getColumn() == currentLoc.getColumn())) {
 				return !destination.isOccupied();
 			}
+		
 		}
 
 		return false;
+
 	}
 
 	public Square[] validMoves(Piece piece) {
@@ -298,6 +277,7 @@ public class MovementManager {
 		}
 
 		return allSquares;
+	
 	}
 
 	public boolean isPromoted(Pawn pawn) {
@@ -306,7 +286,6 @@ public class MovementManager {
 		if (pawn.getPieceColor() == Color.BLACK && pawn.getCurrentLocation().getRow() == 7)
 			return true;
 		return false;
-
 	}
 
 	public boolean isRookable(King king, Rook rook) {
@@ -320,12 +299,14 @@ public class MovementManager {
 			return true;
 
 		return false;
+	
 	}
 
 	public boolean removePiece(Piece piece) {
 
 		piece.updateLocation(null);
 		return !piece.getCurrentLocation().withdraw();
+		
 	}
 
 	public boolean addPiece(Piece piece) {
@@ -350,7 +331,9 @@ public class MovementManager {
 
 			}
 		}
+		
 		return false;
+	
 	}
 
 }

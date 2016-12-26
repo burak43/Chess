@@ -20,7 +20,6 @@ public abstract class Piece {
 		currentLocation = location;
 	}
 
-	// methods
 	/**
 	 * Updates the current location of this piece and marks it as moved.
 	 * 
@@ -36,7 +35,6 @@ public abstract class Piece {
 		return true;
 	}
 
-	// getters & setters
 	/**
 	 * @return the moved
 	 */
