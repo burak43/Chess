@@ -28,7 +28,7 @@ public class Game {
 		String[][] result = new String[32][3];
 		int count = 0;
 
-		for( int i = 0; i < 8; i++)
+		for( int i = 1; i < 9; i++)
 		{
 			for(int j = 0; j < 8; j++)
 			{
@@ -65,6 +65,8 @@ public class Game {
 
 		if(gameManager.result.equals(gameManager.players[1].getName() + " is the Winner!"))
 			return 2;
+
+		return -1;
 		
 	}
 	
@@ -76,7 +78,7 @@ public class Game {
 	public String[][] getPossible(char cp, int ip) {
 
 		// CHAR SHOULD BE CAPITAL WHEN CALLED, like 'A', not 'a'
-		Square[] allPossible = gameManager.movementManager.validMoves(gameManager.board.getSquareAtLoc(ip, cp).getPlacedPiece());
+		Square[] allPossible = gameManager.movementManager.validMoves(gameManager.board.getSquareAtLoc(ip+1, cp).getPlacedPiece());
 
 		String[][] squareToString = new String[64][2];
 
@@ -97,8 +99,8 @@ public class Game {
 	 * boolean gone = g.move('A', 2, 'A', 4); */
 	public boolean move(char cp1, int ip1, char cp2, int ip2) {
 
-		Piece pieceOfInterest = gameManager.board.getSquareAtLoc(ip1, cp1).getPlacedPiece();
-		Square destination = gameManager.board.getSquareAtLoc(ip2, cp2);
+		Piece pieceOfInterest = gameManager.board.getSquareAtLoc(ip1+1, cp1).getPlacedPiece();
+		Square destination = gameManager.board.getSquareAtLoc(ip2+1, cp2);
 
 
 		if (gameManager.movePiece(pieceOfInterest, destination) == null)
