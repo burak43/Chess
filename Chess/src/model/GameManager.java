@@ -3,12 +3,12 @@ package model;
 public class GameManager {
 
 	public Color turn;
-	private Player[] players;
-	private String result;
+	protected Player[] players;
+	protected String result;
 	public CheckStatus checkStatus;
 	public boolean paused;
-	private Board board;
-	private MovementManager movementManager;
+	protected Board board;
+	protected MovementManager movementManager;
 
 	public GameManager(Player[] players) {
 		this.players = players;
