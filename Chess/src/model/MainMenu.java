@@ -36,6 +36,7 @@ public class MainMenu extends JPanel {
 	}
 
 	public static void startGame(MainMenuPanel mc, JFrame frame) {
+		mc.startGame();
 		mc.eleman = 1;
 		frame.repaint();
 	}

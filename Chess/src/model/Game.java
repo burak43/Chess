@@ -20,6 +20,8 @@ public class Game {
 
 		gameManager = new GameManager(players);
 
+		gameManager.placeObjects(); // ecem -> berk : bu satiri ekledim ki taslar dizilsin ayrica taslar ters dizildigi icin onlari da gamemanager de duzelttim
+		
 	}
 
 	/*
@@ -32,7 +34,7 @@ public class Game {
 
 		String[][] result = new String[32][4];
 		int count = 0;
-
+		
 		for (int i = 1; i < 9; i++) {
 			for (int j = 0; j < 8; j++) {
 				char column = (char) ('A' + j);
@@ -52,7 +54,7 @@ public class Game {
 		return result;
 
 	}
-
+	
 	/*
 	 * method input yok, output 3 olasılık int olarak (player 1 kazandı -> 1 /
 	 * player 2 kazandı -> 2 / oyun devam ediyor -> 0) int result =

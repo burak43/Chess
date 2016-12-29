@@ -20,10 +20,23 @@ public class MainMenuPanel extends JComponent {
 
 	public boolean settings_from_pause_menu = false;
 
+	public Game g;
+	
+	public char c1_c;
+	public int c1_i;
+	public char c2_c;
+	public int c2_i;
+	public boolean c1 = false;
+	public boolean c2 = false;
+	
 	MainMenuPanel(int e) {
 		eleman = e;
 	}
-
+	
+	public void startGame() {
+		g = new Game(name1, name2);	
+	}
+	
 	@Override
 	public void paint(Graphics g) {
 

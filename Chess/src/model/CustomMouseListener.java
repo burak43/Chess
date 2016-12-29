@@ -24,8 +24,21 @@ public class CustomMouseListener implements MouseListener {
 
 		char col = ((char) (65 + ((int) (x / 90))));
 
-		System.out.println(col + " - " + row);
-
+		//System.out.println(col + " - " + row);
+		
+		if (mc.c1) {
+			mc.c2_c = col;
+			mc.c2_i = row;
+			mc.c2 = true;
+			mc.c1 = false;
+			frame.repaint();
+		} else {
+			mc.c1_c = col;
+			mc.c1_i = row;
+			mc.c1 = true;
+			frame.repaint();
+		}
+		
 	}
 
 	@Override
