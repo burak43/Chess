@@ -76,16 +76,16 @@ public class Game {
 	}
 
 	/*
-	 * method input char ve int ('A', 2) eğer o pozisyonda bir taş varsa, o
+	 * method input: char ve int ('A', 2). eğer o pozisyonda bir taş varsa, o
 	 * pozisyondaki taşın tipini bulup, o taşın gidebileceği pozisyonları 2d
-	 * string array olarak dönecek arraydaki her eleman ikili olacak, string
-	 * olarak char pos ve string olarak int pos [["h", "8"], ["b", "4"], ["c",
-	 * "6"]] input olarak aldığı pozisyonda taş yoksa boş array dönecek
+	 * string array olarak dönecek. arraydaki her eleman ikili olacak, string
+	 * olarak char pos ve string olarak int pos e.g. [["h", "8"], ["b", "4"], ["c",
+	 * "6"]]. input olarak aldığı pozisyonda taş yoksa boş array dönecek.
 	 * String[][] possible = g.getPossible('A', 2);
 	 */
 	public String[][] getPossible(char cp, int ip) {
 
-		Square[] allPossible = gameManager.movementManager.validMoves(gameManager.board.getSquareAtLoc(ip + 1, cp).getPlacedPiece());
+		Square[] allPossible = gameManager.movementManager.validMoves(gameManager.board.getSquareAtLoc(ip, cp).getPlacedPiece());
 
 		String[][] squareToString = new String[64][2];
 

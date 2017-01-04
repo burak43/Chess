@@ -60,11 +60,13 @@ public class GamePanel {
 		// ecem -> berk : getPossible method un patliyor
 		
 		if (mmp.c1) {
-			//String[][] possible = mmp.g.getPossible(mmp.c1_c, mmp.c1_i);
+			String[][] possible = mmp.g.getPossible(mmp.c1_c, mmp.c1_i);
 			System.out.println("show legal moves of " + mmp.c1_c + " - " + mmp.c1_i);
-			//for (int i = 0; i < possible.length; i++) {
-				//g.fillRect(gx2(possible[i][0].charAt(0)), gy2(Integer.parseInt(possible[i][1])), 90, 90);
-			//}			
+			for (int i = 0; i < possible.length; i++) {
+				// Oynanilabilir yerleri cizdirdikten sonra asagidaki satirda kod patliyor. Nedenini 
+				// sana birakiyorum ecem. Hesaplamarinda bir sikinti olabilir.
+				g.fillRect(gx2(possible[i][0].charAt(0)), gy2(Integer.parseInt(possible[i][1])), 90, 90);
+			}			
 		}
 		
 		// ecem -> berk : move method un patliyor
@@ -72,7 +74,7 @@ public class GamePanel {
 		if (mmp.c2) {
 			mmp.c2 = false;
 			System.out.println("move " + mmp.c1_c + " - " + mmp.c1_i + " to " + mmp.c2_c + " - " + mmp.c2_i);
-			//mmp.g.move(mmp.c1_c, mmp.c1_i, mmp.c2_c, mmp.c2_i);
+			mmp.g.move(mmp.c1_c, mmp.c1_i, mmp.c2_c, mmp.c2_i);
 		}
 		
 		String[][] piecesPos = mmp.g.getPiecesPositions();
