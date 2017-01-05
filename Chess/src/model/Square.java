@@ -4,7 +4,7 @@ public class Square {
 	private int row;
 	private char column;
 	private boolean occupied;
-	private Piece placedPiece;
+	public Piece placedPiece;
 
 	/**
 	 * Initializes this Square according to given parameters. If 'placedPiece'
@@ -16,6 +16,7 @@ public class Square {
 	 *            the piece that this Square contains. Pass "null" if currently
 	 *            no piece is placed.
 	 */
+	
 	public Square(int row, char column, Piece placedPiece) {
 		this.row = row;
 		this.column = column;
@@ -23,7 +24,7 @@ public class Square {
 		if (this.placedPiece != null)
 			this.occupied = true;
 	}
-
+		
 	/**
 	 * Places a piece to this square and marks it as occupied
 	 * 
@@ -40,6 +41,7 @@ public class Square {
 	 * @return the placedPiece
 	 */
 	public Piece getPlacedPiece() {
+		if (placedPiece == null) { return null; }
 		return placedPiece;
 	}
 
@@ -56,6 +58,7 @@ public class Square {
 	 * @return new value of 'occupied'
 	 */
 	public boolean withdraw() {
+		placedPiece = null;
 		this.occupied = false;
 		return this.occupied;
 	}

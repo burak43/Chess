@@ -15,8 +15,8 @@ public class MainMenuPanel extends JComponent {
 	public String name1;
 	public String name2;
 
-	public boolean sett_brownback;
-	public boolean sett_showlegal;
+	public boolean sett_brownback = false;
+	public boolean sett_showlegal = true;
 
 	public boolean settings_from_pause_menu = false;
 

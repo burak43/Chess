@@ -4,7 +4,7 @@ import javax.swing.ImageIcon;
 
 public abstract class Piece {
 	private Color pieceColor;
-	private Square currentLocation;
+	public Square currentLocation;
 	private boolean moved;
 	private ImageIcon image;
 

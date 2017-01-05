@@ -5,10 +5,10 @@ public class Board {
 	private PieceSet[] pieceSets;
 
 	public Board() {
+
 		squares = new Square[8][8];
 		for (int i = 0; i < 8; i++) {
 			int row = i + 1;
-			squares[i] = new Square[8];
 			for (int j = 0; j < 8; j++) {
 				char column = (char) ('A' + j);
 				squares[i][j] = new Square(row, column, null);

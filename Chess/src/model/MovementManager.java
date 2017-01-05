@@ -19,9 +19,8 @@ public class MovementManager {
 
 	public boolean isMoveable(Piece piece, Square destination) {
 
-		Square currentLoc = new Square(piece.getCurrentLocation().getRow(), piece.getCurrentLocation().getColumn(),
-				piece.getCurrentLocation().getPlacedPiece());
-
+		Square currentLoc = new Square(piece.getCurrentLocation().getRow(), piece.getCurrentLocation().getColumn(), piece.getCurrentLocation().getPlacedPiece());
+	
 		if (destination.getColumn() > 'H')
 			return false;
 		if (destination.getRow() > 8)

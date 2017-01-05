@@ -120,20 +120,36 @@ public class GameManager {
 		return !(result.equals("not finished"));
 	}
 
-	public Piece movePiece(Piece piece, Square square) {
+	public Piece movePiece(char cp1, int ip1, char cp2, int ip2) {
+	
+		//board.getSquareAtLoc(7, 'A').getPlacedPiece().getCurrentLocation().withdraw();	
+		//System.out.println("A-7 bosalmis olmali ama degil -> " + board.getSquareAtLoc(7, 'A').isOccupied());
+				
+		Piece piece = board.getSquareAtLoc(ip1, cp1).getPlacedPiece();
+		Square square = board.getSquareAtLoc(ip2, cp2);
 
+		if (piece == null || square.isOccupied()) { return null; }
+
+		//System.out.println("* " + Integer.toHexString(System.identityHashCode(board.getSquareAtLoc(ip1, cp1))));
+		//System.out.println("* " + Integer.toHexString(System.identityHashCode(board.getSquareAtLoc(ip1, cp1))));
+		//System.out.println("* " + Integer.toHexString(System.identityHashCode(board.getSquareAtLoc(ip1, cp1).getPlacedPiece().getCurrentLocation())));
+		//System.out.println("* " + Integer.toHexString(System.identityHashCode(board.getSquareAtLoc(ip1, cp1).getPlacedPiece().getCurrentLocation())));
+		
 		if (movementManager.isMoveable(piece, square)) {
+			
 			piece.getCurrentLocation().withdraw();
 			square.withdraw();
+			
 			square.placePiece(piece);
+			piece.setCurrentLocation(square);
+			
 			return piece;
+	
 		}
 
 		return null;
 
 	}
-
-	// ecem -> berk : taslarin yerini duzelttim
 	
 	public void placeObjects() {
 
@@ -143,100 +159,99 @@ public class GameManager {
 			char column = 'A';
 			column += i;
 			Pawn pawn = new Pawn(Color.WHITE, null);
-			Square square = new Square(2, column, pawn);
+			Square square = board.getSquareAtLoc(2, column);
 			pawn.setCurrentLocation(square);
-
 			board.getSquareAtLoc(2, column).placePiece(pawn);
 
 		}
 
 		// place white rooks
 		Rook rook1 = new Rook(Color.WHITE, null);
-		Square square2A = new Square(1, 'A', rook1);
+		Square square2A = board.getSquareAtLoc(1, 'A');
 		rook1.setCurrentLocation(square2A);
 		board.getSquareAtLoc(1, 'A').placePiece(rook1);
 
 		Rook rook2 = new Rook(Color.WHITE, null);
-		Square square2H = new Square(1, 'H', rook2);
+		Square square2H = board.getSquareAtLoc(1, 'H');
 		rook2.setCurrentLocation(square2H);
 		board.getSquareAtLoc(1, 'H').placePiece(rook2);
 
 		// place white knights
 		Knight knight1 = new Knight(Color.WHITE, null);
-		Square square2B = new Square(1, 'B', knight1);
+		Square square2B = board.getSquareAtLoc(1, 'B');
 		knight1.setCurrentLocation(square2B);
 		board.getSquareAtLoc(1, 'B').placePiece(knight1);
 
 		Knight knight2 = new Knight(Color.WHITE, null);
-		Square square2G = new Square(1, 'G', knight2);
+		Square square2G = board.getSquareAtLoc(1, 'G');
 		knight2.setCurrentLocation(square2G);
 		board.getSquareAtLoc(1, 'G').placePiece(knight2);
 
 		// place white bishops
 		Bishop bishop1 = new Bishop(Color.WHITE, null);
-		Square square2C = new Square(1, 'C', bishop1);
+		Square square2C = board.getSquareAtLoc(1, 'C');
 		bishop1.setCurrentLocation(square2C);
 		board.getSquareAtLoc(1, 'C').placePiece(bishop1);
 
 		Bishop bishop2 = new Bishop(Color.WHITE, null);
-		Square square2F = new Square(1, 'F', bishop2);
+		Square square2F = board.getSquareAtLoc(1, 'F');
 		bishop2.setCurrentLocation(square2F);
 		board.getSquareAtLoc(1, 'F').placePiece(bishop2);
 
 		// place white queen
 		Queen queen = new Queen(Color.WHITE, null);
-		Square square2D = new Square(1, 'D', queen);
+		Square square2D = board.getSquareAtLoc(1, 'D');
 		queen.setCurrentLocation(square2D);
 		board.getSquareAtLoc(1, 'D').placePiece(queen);
 
 		// place white king
 		King king = new King(Color.WHITE, null);
-		Square square2E = new Square(1, 'E', king);
+		Square square2E = board.getSquareAtLoc(1, 'E');
 		king.setCurrentLocation(square2E);
 		board.getSquareAtLoc(1, 'E').placePiece(king);
 
 		// place black rooks
 		Rook rook3 = new Rook(Color.BLACK, null);
-		Square square7A = new Square(8, 'A', rook3);
+		Square square7A = board.getSquareAtLoc(8, 'A');
 		rook3.setCurrentLocation(square7A);
 		board.getSquareAtLoc(8, 'A').placePiece(rook3);
 
 		Rook rook4 = new Rook(Color.BLACK, null);
-		Square square7H = new Square(8, 'H', rook4);
+		Square square7H = board.getSquareAtLoc(8, 'H');
 		rook4.setCurrentLocation(square7H);
 		board.getSquareAtLoc(8, 'H').placePiece(rook4);
 
 		// place white knights
 		Knight knight3 = new Knight(Color.BLACK, null);
-		Square square7B = new Square(8, 'B', knight3);
+		Square square7B = board.getSquareAtLoc(8, 'B');
 		knight3.setCurrentLocation(square7B);
 		board.getSquareAtLoc(8, 'B').placePiece(knight3);
 
 		Knight knight4 = new Knight(Color.BLACK, null);
-		Square square7G = new Square(8, 'G', knight4);
+		Square square7G = board.getSquareAtLoc(8, 'G');
 		knight4.setCurrentLocation(square7G);
 		board.getSquareAtLoc(8, 'G').placePiece(knight4);
 
 		// place white bishops
 		Bishop bishop3 = new Bishop(Color.BLACK, null);
-		Square square7C = new Square(8, 'C', bishop3);
+		Square square7C = board.getSquareAtLoc(8, 'C');
 		bishop3.setCurrentLocation(square7C);
 		board.getSquareAtLoc(8, 'C').placePiece(bishop3);
 
 		Bishop bishop4 = new Bishop(Color.BLACK, null);
-		Square square7F = new Square(8, 'F', bishop4);
+		Square square7F = board.getSquareAtLoc(8, 'F');
 		bishop4.setCurrentLocation(square7F);
 		board.getSquareAtLoc(8, 'F').placePiece(bishop4);
 
 		// place white queen
 		Queen queenBlack = new Queen(Color.BLACK, null);
-		Square square7D = new Square(8, 'D', queenBlack);
+		Square square7D = board.getSquareAtLoc(8, 'D');
 		queenBlack.setCurrentLocation(square7D);
 		board.getSquareAtLoc(8, 'D').placePiece(queenBlack);
 
 		// place white king
 		King kingBlack = new King(Color.BLACK, null);
-		Square square7E = new Square(8, 'E', kingBlack);
+		Square square7E = board.getSquareAtLoc(8, 'E');
 		kingBlack.setCurrentLocation(square7E);
 		board.getSquareAtLoc(8, 'E').placePiece(kingBlack);
 
@@ -246,9 +261,8 @@ public class GameManager {
 			char column = 'A';
 			column += i;
 			Pawn pawn = new Pawn(Color.BLACK, null);
-			Square square = new Square(7, column, pawn);
+			Square square = board.getSquareAtLoc(7, column);
 			pawn.setCurrentLocation(square);
-
 			board.getSquareAtLoc(7, column).placePiece(pawn);
 
 		}
