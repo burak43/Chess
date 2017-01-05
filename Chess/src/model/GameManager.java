@@ -124,7 +124,7 @@ public class GameManager {
 
 		if (movementManager.isMoveable(piece, square)) {
 			piece.getCurrentLocation().withdraw();
-			//square.withdraw();
+			square.withdraw();
 			square.placePiece(piece);
 			return piece;
 		}
@@ -142,95 +142,117 @@ public class GameManager {
 
 			char column = 'A';
 			column += i;
-			Square square = board.getSquareAtLoc(2, column);
-			Pawn pawn = new Pawn(Color.WHITE, square);
-			square.placePiece(pawn);
+			Pawn pawn = new Pawn(Color.WHITE, null);
+			Square square = new Square(2, column, pawn);
+			pawn.setCurrentLocation(square);
+
+			board.getSquareAtLoc(2, column).placePiece(pawn);
+
 		}
 
 		// place white rooks
-		Square square1A = board.getSquareAtLoc(1, 'A');
-		Rook rook1 = new Rook(Color.WHITE, square1A);
-		square1A.placePiece(rook1);
+		Rook rook1 = new Rook(Color.WHITE, null);
+		Square square2A = new Square(1, 'A', rook1);
+		rook1.setCurrentLocation(square2A);
+		board.getSquareAtLoc(1, 'A').placePiece(rook1);
 
-		Square square1H = board.getSquareAtLoc(1, 'H');
-		Rook rook2 = new Rook(Color.WHITE, square1H);
-		square1H.placePiece(rook2);
+		Rook rook2 = new Rook(Color.WHITE, null);
+		Square square2H = new Square(1, 'H', rook2);
+		rook2.setCurrentLocation(square2H);
+		board.getSquareAtLoc(1, 'H').placePiece(rook2);
 
 		// place white knights
-		Square square1B = board.getSquareAtLoc(1, 'B');
-		Knight knight1 = new Knight(Color.WHITE, square1B);
-		square1B.placePiece(knight1);
+		Knight knight1 = new Knight(Color.WHITE, null);
+		Square square2B = new Square(1, 'B', knight1);
+		knight1.setCurrentLocation(square2B);
+		board.getSquareAtLoc(1, 'B').placePiece(knight1);
 
-		Square square1G = board.getSquareAtLoc(1, 'G');
-		Knight knight2 = new Knight(Color.WHITE, square1G);
-		knight2.setCurrentLocation(square1G);
-		square1G.placePiece(knight2);
+		Knight knight2 = new Knight(Color.WHITE, null);
+		Square square2G = new Square(1, 'G', knight2);
+		knight2.setCurrentLocation(square2G);
+		board.getSquareAtLoc(1, 'G').placePiece(knight2);
 
 		// place white bishops
-		Square square1C = board.getSquareAtLoc(1, 'C');
-		Bishop bishop1 = new Bishop(Color.WHITE, square1C);
-		square1C.placePiece(bishop1);
+		Bishop bishop1 = new Bishop(Color.WHITE, null);
+		Square square2C = new Square(1, 'C', bishop1);
+		bishop1.setCurrentLocation(square2C);
+		board.getSquareAtLoc(1, 'C').placePiece(bishop1);
 
-		Square square1F = board.getSquareAtLoc(1, 'F');
-		Bishop bishop2 = new Bishop(Color.WHITE, square1F);
-		square1F.placePiece(bishop2);
+		Bishop bishop2 = new Bishop(Color.WHITE, null);
+		Square square2F = new Square(1, 'F', bishop2);
+		bishop2.setCurrentLocation(square2F);
+		board.getSquareAtLoc(1, 'F').placePiece(bishop2);
 
 		// place white queen
-		Square square1D = board.getSquareAtLoc(1, 'D');
-		Queen queen = new Queen(Color.WHITE, square1D);
-		square1D.placePiece(queen);
+		Queen queen = new Queen(Color.WHITE, null);
+		Square square2D = new Square(1, 'D', queen);
+		queen.setCurrentLocation(square2D);
+		board.getSquareAtLoc(1, 'D').placePiece(queen);
 
 		// place white king
-		Square square1E = board.getSquareAtLoc(1, 'E');
-		King king = new King(Color.WHITE, square1E);
-		square1E.placePiece(king);
+		King king = new King(Color.WHITE, null);
+		Square square2E = new Square(1, 'E', king);
+		king.setCurrentLocation(square2E);
+		board.getSquareAtLoc(1, 'E').placePiece(king);
 
 		// place black rooks
-		Square square8A = board.getSquareAtLoc(8, 'A');
-		Rook rook3 = new Rook(Color.WHITE, square8A);
-		square8A.placePiece(rook3);
+		Rook rook3 = new Rook(Color.BLACK, null);
+		Square square7A = new Square(8, 'A', rook3);
+		rook3.setCurrentLocation(square7A);
+		board.getSquareAtLoc(8, 'A').placePiece(rook3);
 
-		Square square8H = board.getSquareAtLoc(8, 'H');
-		Rook rook4 = new Rook(Color.WHITE, square8H);
-		square8H.placePiece(rook4);
+		Rook rook4 = new Rook(Color.BLACK, null);
+		Square square7H = new Square(8, 'H', rook4);
+		rook4.setCurrentLocation(square7H);
+		board.getSquareAtLoc(8, 'H').placePiece(rook4);
 
-		// place black knights
-		Square square8B = board.getSquareAtLoc(8, 'B');
-		Knight knight3 = new Knight(Color.WHITE, square8B);
-		square8B.placePiece(knight3);
+		// place white knights
+		Knight knight3 = new Knight(Color.BLACK, null);
+		Square square7B = new Square(8, 'B', knight3);
+		knight3.setCurrentLocation(square7B);
+		board.getSquareAtLoc(8, 'B').placePiece(knight3);
 
-		Square square8G = board.getSquareAtLoc(8, 'G');
-		Knight knight4 = new Knight(Color.WHITE, square8G);
-		knight4.setCurrentLocation(square8G);
-		square8G.placePiece(knight4);
+		Knight knight4 = new Knight(Color.BLACK, null);
+		Square square7G = new Square(8, 'G', knight4);
+		knight4.setCurrentLocation(square7G);
+		board.getSquareAtLoc(8, 'G').placePiece(knight4);
 
-		// place black bishops
-		Square square8C = board.getSquareAtLoc(8, 'C');
-		Bishop bishop3 = new Bishop(Color.WHITE, square8C);
-		square8C.placePiece(bishop3);
+		// place white bishops
+		Bishop bishop3 = new Bishop(Color.BLACK, null);
+		Square square7C = new Square(8, 'C', bishop3);
+		bishop3.setCurrentLocation(square7C);
+		board.getSquareAtLoc(8, 'C').placePiece(bishop3);
 
-		Square square8F = board.getSquareAtLoc(8, 'F');
-		Bishop bishop4 = new Bishop(Color.WHITE, square8F);
-		square8F.placePiece(bishop4);
+		Bishop bishop4 = new Bishop(Color.BLACK, null);
+		Square square7F = new Square(8, 'F', bishop4);
+		bishop4.setCurrentLocation(square7F);
+		board.getSquareAtLoc(8, 'F').placePiece(bishop4);
 
-		// place black queen
-		Square square8D = board.getSquareAtLoc(8, 'D');
-		Queen queen2 = new Queen(Color.WHITE, square8D);
-		square8D.placePiece(queen2);
+		// place white queen
+		Queen queenBlack = new Queen(Color.BLACK, null);
+		Square square7D = new Square(8, 'D', queenBlack);
+		queenBlack.setCurrentLocation(square7D);
+		board.getSquareAtLoc(8, 'D').placePiece(queenBlack);
 
-		// place black king
-		Square square8E = board.getSquareAtLoc(8, 'E');
-		King king2 = new King(Color.WHITE, square8E);
-		square8E.placePiece(king2);
+		// place white king
+		King kingBlack = new King(Color.BLACK, null);
+		Square square7E = new Square(8, 'E', kingBlack);
+		kingBlack.setCurrentLocation(square7E);
+		board.getSquareAtLoc(8, 'E').placePiece(kingBlack);
 
 		// place black pawns
 		for (int i = 0; i < 8; i++) {
+
 			char column = 'A';
 			column += i;
-			Square square = board.getSquareAtLoc(7, column);
-			Pawn pawn = new Pawn(Color.BLACK, square);
-			square.placePiece(pawn);
+			Pawn pawn = new Pawn(Color.BLACK, null);
+			Square square = new Square(7, column, pawn);
+			pawn.setCurrentLocation(square);
+
+			board.getSquareAtLoc(7, column).placePiece(pawn);
+
 		}
+
 	}
 
 	public void pauseGame() {
