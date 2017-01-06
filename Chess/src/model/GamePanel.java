@@ -28,9 +28,13 @@ public class GamePanel {
 
 		g.drawImage((new ImageIcon(mmp.sett_brownback ? "icons/checkered2.png" : "icons/checkered1.png")).getImage(), 0, 0, 720, 720, null);
 
+		g.setColor(new Color(0.66f, 0.76f, 0.07f, 1.0f));
+		if (mmp.c1 && mmp.g.gameManager.board.getSquareAtLoc(mmp.c1_i, mmp.c1_c).isOccupied()) {
+			g.fillRect(gx2(mmp.c1_c), gy2(mmp.c1_i), 90, 90);
+		}
+		
 		g.setColor(new Color(0.93f, 0.28f, 0.37f, 1.0f));
-
-		if (mmp.c1 && mmp.sett_showlegal) {
+		if (mmp.c1 && mmp.sett_showlegal && mmp.g.gameManager.board.getSquareAtLoc(mmp.c1_i, mmp.c1_c).isOccupied()) {
 			String[][] possible = mmp.g.getPossible(mmp.c1_c, mmp.c1_i);
 			System.out.println("show legal moves of " + mmp.c1_c + " - " + mmp.c1_i);
 			for (int i = 0; i < possible.length; i++) {
@@ -44,13 +48,17 @@ public class GamePanel {
 				
 		if (mmp.c2) {
 			mmp.c2 = false;
-			System.out.println("move " + mmp.c1_c + " - " + mmp.c1_i + " to " + mmp.c2_c + " - " + mmp.c2_i);
-			mmp.g.move(mmp.c1_c, mmp.c1_i, mmp.c2_c, mmp.c2_i);
+			if (mmp.g.gameManager.board.getSquareAtLoc(mmp.c1_i, mmp.c1_c).isOccupied()) {
+				System.out.println("move " + mmp.c1_c + " - " + mmp.c1_i + " to " + mmp.c2_c + " - " + mmp.c2_i);
+				mmp.g.move(mmp.c1_c, mmp.c1_i, mmp.c2_c, mmp.c2_i);
+			}
 		}
-		
+
 		String[][] piecesPos = mmp.g.getPiecesPositions();
 		for (int i = 0; i < piecesPos.length; i++) {
-			g.drawImage((new ImageIcon("icons/" + piecesPos[i][3] + "_" + piecesPos[i][0].split(Pattern.quote("."))[1].toLowerCase() + ".png")).getImage(), gx(piecesPos[i][1].charAt(0)), gy(Integer.parseInt(piecesPos[i][2])), 60, 60, null);
+			if (piecesPos[i][0] != null) {
+				g.drawImage((new ImageIcon("icons/" + piecesPos[i][3] + "_" + piecesPos[i][0].split(Pattern.quote("."))[1].toLowerCase() + ".png")).getImage(), gx(piecesPos[i][1].charAt(0)), gy(Integer.parseInt(piecesPos[i][2])), 60, 60, null);
+			}
 		}
 				
 	}

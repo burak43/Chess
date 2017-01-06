@@ -128,7 +128,7 @@ public class GameManager {
 		Piece piece = board.getSquareAtLoc(ip1, cp1).getPlacedPiece();
 		Square square = board.getSquareAtLoc(ip2, cp2);
 
-		if (piece == null || square.isOccupied()) { return null; }
+		if (piece == null) { return null; }
 
 		//System.out.println("* " + Integer.toHexString(System.identityHashCode(board.getSquareAtLoc(ip1, cp1))));
 		//System.out.println("* " + Integer.toHexString(System.identityHashCode(board.getSquareAtLoc(ip1, cp1))));
