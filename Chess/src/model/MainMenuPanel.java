@@ -78,6 +78,10 @@ public class MainMenuPanel extends JComponent {
 			g.drawRect(290, 310, 280, 50);
 
 			g.drawString("Back", 100, 600);
+			
+			Font myFont2 = new Font("Courier New", 1, 25);
+			g.setFont(myFont2);
+			g.drawString("For pause menu, press esc.", 260, 540);
 
 		} else if (eleman == 7) {
 

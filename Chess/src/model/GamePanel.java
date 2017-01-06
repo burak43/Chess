@@ -1,7 +1,9 @@
 package model;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.regex.Pattern;
 
 import javax.swing.ImageIcon;
@@ -54,10 +56,18 @@ public class GamePanel {
 			}
 		}
 
+		Graphics2D g2 = (Graphics2D)g;
+		
 		String[][] piecesPos = mmp.g.getPiecesPositions();
 		for (int i = 0; i < piecesPos.length; i++) {
 			if (piecesPos[i][0] != null) {
+				
+				// turn kimdeyse digerini seffaf
+
+				g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (piecesPos[i][3] == "w") ? 0.5f : 1.0f));
+				
 				g.drawImage((new ImageIcon("icons/" + piecesPos[i][3] + "_" + piecesPos[i][0].split(Pattern.quote("."))[1].toLowerCase() + ".png")).getImage(), gx(piecesPos[i][1].charAt(0)), gy(Integer.parseInt(piecesPos[i][2])), 60, 60, null);
+			
 			}
 		}
 				
