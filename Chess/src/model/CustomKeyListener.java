@@ -19,7 +19,6 @@ public class CustomKeyListener implements KeyListener {
 		dm.name1 = "";
 		dm.name2 = "";
 		frame.repaint();
-
 	}
 
 	int count = 0;
@@ -78,6 +77,7 @@ public class CustomKeyListener implements KeyListener {
 			}
 
 		}
+	
 	}
 
 	@Override

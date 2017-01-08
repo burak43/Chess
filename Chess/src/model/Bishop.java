@@ -13,10 +13,11 @@ public class Bishop extends Piece {
 	 */
 	public Bishop(Color color, Square location) {
 		super(color, location);
-		if (color == Color.WHITE)
+		if (color == Color.WHITE) {
 			this.setImage(new ImageIcon("icons/w_bishop.png", "White Bishop Icon"));
-		else
+		} else {
 			this.setImage(new ImageIcon("icons/b_bishop.png", "Black Bishop Icon"));
+		}
 	}
 
 }

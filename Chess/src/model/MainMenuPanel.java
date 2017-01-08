@@ -29,6 +29,8 @@ public class MainMenuPanel extends JComponent {
 	public boolean c1 = false;
 	public boolean c2 = false;
 	
+	public boolean turn_black = false;
+	
 	MainMenuPanel(int e) {
 		eleman = e;
 	}
@@ -102,10 +104,8 @@ public class MainMenuPanel extends JComponent {
 
 			g.drawString("Exit", 100, 600);
 
-			// Graphics2D g2 = (Graphics2D) g;
-			// g2.setStroke(new BasicStroke(30));
-			// g.drawLine(400, 35, 400, 35);
-
 		}
+		
 	}
+	
 }

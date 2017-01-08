@@ -6,8 +6,6 @@ import javax.swing.JFrame;
 
 public class ScreenManager {
 
-	// private JFrame frame;
-
 	public ScreenManager(int screenWidth, int screenHeight) {
 	}
 

@@ -23,8 +23,6 @@ public class CustomMouseListener implements MouseListener {
 		int row = (8 - ((int) (y / 90)));
 
 		char col = ((char) (65 + ((int) (x / 90))));
-
-		//System.out.println(col + " - " + row);
 		
 		if (mc.c1) {
 			mc.c2_c = col;
@@ -70,9 +68,10 @@ public class CustomMouseListener implements MouseListener {
 				Menu.displayHelp(mc, frame);
 			} else if (x > 100 && x < 250 && y > 600 && y < 650) {
 				MainMenu.exitGame();
-			} else
+			} else {
 				madde = "";
-
+			}
+			
 		} else if (mc.eleman == 1) {
 
 			handleGameBoardClick(x, y0); // no need to add 22 because from now
@@ -91,7 +90,6 @@ public class CustomMouseListener implements MouseListener {
 			} else if (x > 550 && x < 650 && y > 210 && y < 310) {
 				Menu.applySettings(mc, 1);
 				frame.repaint();
-
 			} else if (x > 100 && x < 250 && y > 600 && y < 650) {
 				if (mc.settings_from_pause_menu) {
 					mc.settings_from_pause_menu = false;
@@ -136,21 +134,18 @@ public class CustomMouseListener implements MouseListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
 	}
+
 }

@@ -1,11 +1,11 @@
 package model;
 
 public class Board {
+
 	public Square[][] squares;
 	private PieceSet[] pieceSets;
 
 	public Board() {
-
 		squares = new Square[8][8];
 		for (int i = 0; i < 8; i++) {
 			int row = i + 1;

@@ -19,10 +19,11 @@ public class Pawn extends Piece {
 
 		promoted = false;
 		promotedTo = null;
-		if (color == Color.WHITE)
+		if (color == Color.WHITE) {
 			this.setImage(new ImageIcon("icons/w_pawn.png", "White Pawn Icon"));
-		else
+		} else {
 			this.setImage(new ImageIcon("icons/b_pawn.png", "Black Pawn Icon"));
+		}
 	}
 
 	/**

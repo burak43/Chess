@@ -1,6 +1,7 @@
 package model;
 
 public class Square {
+	
 	private int row;
 	private char column;
 	private boolean occupied;
@@ -15,14 +16,14 @@ public class Square {
 	 * @param placedPiece
 	 *            the piece that this Square contains. Pass "null" if currently
 	 *            no piece is placed.
-	 */
-	
+	 */	
 	public Square(int row, char column, Piece placedPiece) {
 		this.row = row;
 		this.column = column;
 		this.placedPiece = placedPiece;
-		if (this.placedPiece != null)
+		if (this.placedPiece != null) {
 			this.occupied = true;
+		}
 	}
 		
 	/**

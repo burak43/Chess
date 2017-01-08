@@ -4,11 +4,14 @@ public class Game {
 
 	public GameManager gameManager;
 
+	public Player p1;
+	public Player p2;
+	
 	public Game(String player1, String player2) {
 
-		Player p1 = new Player(player1, Color.WHITE);
-		Player p2 = new Player(player2, Color.BLACK);
-
+		p1 = new Player(player1, Color.WHITE);
+		p2 = new Player(player2, Color.BLACK);
+		
 		Player[] players = new Player[2];
 		players[0] = p1;
 		players[1] = p2;
@@ -46,17 +49,14 @@ public class Game {
 	
 	public int getStatus() {
 
-		if (gameManager.result.equals("not finished"))
-			return 0;
-
-		if (gameManager.result.equals(gameManager.players[0].getName() + " is the Winner!"))
+		if (gameManager.isCheckmated(p1)) {
 			return 1;
-
-		if (gameManager.result.equals(gameManager.players[1].getName() + " is the Winner!"))
+		} else if (gameManager.isCheckmated(p2)) {
 			return 2;
-
-		return -1;
-
+		}
+		
+		return 0;
+		
 	}
 
 	public String[][] getPossible(char cp, int ip) {
@@ -80,9 +80,6 @@ public class Game {
 		if (squareToString[0][0] == null) {
 			return new String[0][0];
 		}
-
-		//System.out.println("1! " + ip);
-		//System.out.println("2! " + gameManager.board.getSquareAtLoc(ip, cp).getPlacedPiece().getCurrentLocation().getRow());
 		
 		return squareToString;
 		

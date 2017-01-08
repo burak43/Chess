@@ -6,17 +6,10 @@ public class Menu extends MainMenu {
 
 	private static final long serialVersionUID = 1L;
 
-	// private JFrame frame;
-	// private MenuActionListener listener;
-	// private ChangeSettingsPanel changeSettingsPanel;
-	// private HelpPanel helpPanel;
-	// private CreditsPanel creditsPanel;
-	// private GameManager gm;
-
 	public Menu() {
 	}
 
-	public void switchPanel() { // (newPanel, removedPanel)
+	public void switchPanel() {
 	}
 
 	public static void displayHelp(MainMenuPanel mc, JFrame frame) {

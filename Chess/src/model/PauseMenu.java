@@ -7,6 +7,7 @@ import java.awt.Graphics;
 public class PauseMenu {
 
 	public static void draw(Graphics g) {
+
 		Font myFont = new Font("Courier New", 1, 50);
 		g.setFont(myFont);
 		g.setColor(Color.WHITE);

@@ -10,9 +10,10 @@ public class MovementManager {
 
 	public boolean isCaptured(Piece piece) {
 
-		if (piece.getCurrentLocation() == null)
+		if (piece.getCurrentLocation() == null) {
 			return true;
-
+		}
+		
 		return false;
 
 	}
@@ -21,64 +22,50 @@ public class MovementManager {
 
 		Square currentLoc = new Square(piece.getCurrentLocation().getRow(), piece.getCurrentLocation().getColumn(), piece.getCurrentLocation().getPlacedPiece());
 	
-		if (destination.getColumn() > 'H')
+		if (destination.getColumn() > 'H') {
 			return false;
-		if (destination.getRow() > 8)
+		}
+		if (destination.getRow() > 8) {
 			return false;
-
+		}
+		
 		if (destination.getPlacedPiece() != null) {
-			if (destination.getPlacedPiece().getPieceColor() == piece.getPieceColor())
+			if (destination.getPlacedPiece().getPieceColor() == piece.getPieceColor()) {
 				return false;
+			}
 		}
 
-		if (destination.getRow() == currentLoc.getRow() && destination.getColumn() == currentLoc.getColumn())
+		if (destination.getRow() == currentLoc.getRow() && destination.getColumn() == currentLoc.getColumn()) {
 			return false;
-
-		// check for rook
+		}
+		
 		if (piece instanceof Rook) {
 			return isMoveableRook(destination, currentLoc);
-		}
-
-		// check for knight
-		else if (piece instanceof Knight) {
+		} else if (piece instanceof Knight) {
 			return isMoveableKnight(destination, currentLoc);
-		}
-
-		// check for bishop
-		else if (piece instanceof Bishop) {
+		} else if (piece instanceof Bishop) {
 			return isMoveableBishop(destination, currentLoc);
-		}
-
-		// check for king
-		else if (piece instanceof King) {
+		} else if (piece instanceof King) {
 			return isMoveableKing(destination, currentLoc);
-		}
-
-		// check for queen
-		else if (piece instanceof Queen) {
+		} else if (piece instanceof Queen) {
 
 			// if queen attempts rook-like movement
-			if (destination.getRow() == currentLoc.getRow() && destination.getColumn() != currentLoc.getColumn())
+			if (destination.getRow() == currentLoc.getRow() && destination.getColumn() != currentLoc.getColumn()) {
 				return isMoveableRook(destination, currentLoc);
-
-			else if (destination.getRow() != currentLoc.getRow() && destination.getColumn() == currentLoc.getColumn())
+			} else if (destination.getRow() != currentLoc.getRow() && destination.getColumn() == currentLoc.getColumn()) {
 				return isMoveableRook(destination, currentLoc);
-
-			// if queen attempts bishop-like movement
-			else if (Math.abs(destination.getRow() - currentLoc.getRow())
-					- Math.abs(destination.getColumn() - currentLoc.getColumn()) == 0) {
-				return isMoveableBishop(destination, currentLoc);
 			}
-
-			else
+			
+			// if queen attempts bishop-like movement
+			else if (Math.abs(destination.getRow() - currentLoc.getRow()) - Math.abs(destination.getColumn() - currentLoc.getColumn()) == 0) {
+				return isMoveableBishop(destination, currentLoc);
+			} else {
 				return false;
-		}
-
-		// check for pawn
-		else if (piece instanceof Pawn) {
+			}
+			
+		} else if (piece instanceof Pawn) {
 			Color color = piece.getPieceColor();
 			return isMoveablePawn(destination, currentLoc, color);
-
 		}
 
 		return false;
@@ -88,45 +75,52 @@ public class MovementManager {
 	// recursively find if rook's path is clear
 	private boolean isMoveableRook(Square destination, Square currentLoc) {
 
-		if (destination.getColumn() != currentLoc.getColumn() && destination.getRow() != currentLoc.getRow())
+		if (destination.getColumn() != currentLoc.getColumn() && destination.getRow() != currentLoc.getRow()) {
 			return false;
-
+		}
+		
 		boolean column = (currentLoc.getColumn() != destination.getColumn());
 
-		if (currentLoc.equals(destination))
+		if (currentLoc.equals(destination)) {
 			return true;
-
+		}
+		
 		if (column) {
+			
 			char targetColumn = currentLoc.getColumn();
 
-			if (destination.getColumn() > currentLoc.getColumn())
+			if (destination.getColumn() > currentLoc.getColumn()) {
 				targetColumn++;
-
-			else
+			} else {
 				targetColumn--;
-
+			}
+			
 			currentLoc.setColumn(targetColumn);
 
-			if (currentLoc.equals(destination))
+			if (currentLoc.equals(destination)) {
 				return true;
-
-			return !(board.getSquareAtLoc(currentLoc.getRow(), targetColumn).isOccupied())
-					&& isMoveableRook(destination, currentLoc);
+			}
+			
+			return !(board.getSquareAtLoc(currentLoc.getRow(), targetColumn).isOccupied()) && isMoveableRook(destination, currentLoc);
+		
 		} else {
+			
 			int targetRow = currentLoc.getRow();
 
-			if (destination.getRow() > currentLoc.getRow())
+			if (destination.getRow() > currentLoc.getRow()) {
 				targetRow++;
-			else
+			} else {
 				targetRow--;
-
+			}
+			
 			currentLoc.setRow(targetRow);
 
-			if (currentLoc.equals(destination))
+			if (currentLoc.equals(destination)) {
 				return true;
-
-			return !(board.getSquareAtLoc(targetRow, currentLoc.getColumn()).isOccupied())
-					&& isMoveableRook(destination, currentLoc);
+			}
+			
+			return !(board.getSquareAtLoc(targetRow, currentLoc.getColumn()).isOccupied()) && isMoveableRook(destination, currentLoc);
+		
 		}
 
 	}
@@ -134,11 +128,9 @@ public class MovementManager {
 	// find if knight's path is clear, check all possibilities one by one
 	private boolean isMoveableKnight(Square destination, Square currentLoc) {
 
-		if (Math.abs(currentLoc.getRow() - destination.getRow()) == 2
-				&& Math.abs(currentLoc.getColumn() - destination.getColumn()) == 1)
+		if (Math.abs(currentLoc.getRow() - destination.getRow()) == 2 && Math.abs(currentLoc.getColumn() - destination.getColumn()) == 1) {
 			return true;
-		else if (Math.abs(currentLoc.getColumn() - destination.getColumn()) == 2
-				&& Math.abs(currentLoc.getRow() - destination.getRow()) == 1) {
+		} else if (Math.abs(currentLoc.getColumn() - destination.getColumn()) == 2 && Math.abs(currentLoc.getRow() - destination.getRow()) == 1) {
 			return true;
 		}
 
@@ -149,60 +141,69 @@ public class MovementManager {
 	// recursively find if bishop's path is clear
 	private boolean isMoveableBishop(Square destination, Square currentLoc) {
 
-		if (currentLoc.equals(destination))
+		if (currentLoc.equals(destination)) {
 			return true;
-
+		}
+		
 		char targetColumn = currentLoc.getColumn();
 		int targetRow = currentLoc.getRow();
 
 		if (currentLoc.getColumn() < destination.getColumn() && currentLoc.getRow() < destination.getRow()) {
+			
 			targetColumn++;
 			targetRow++;
 
 			currentLoc.setRow(targetRow);
 			currentLoc.setColumn(targetColumn);
 
-			if (currentLoc.equals(destination))
+			if (currentLoc.equals(destination)) {
 				return true;
-
-			return !(board.getSquareAtLoc(targetRow, targetColumn).isOccupied())
-					&& isMoveableBishop(destination, currentLoc);
+			}
+			
+			return !(board.getSquareAtLoc(targetRow, targetColumn).isOccupied()) && isMoveableBishop(destination, currentLoc);
+		
 		} else if (currentLoc.getColumn() < destination.getColumn() && currentLoc.getRow() > destination.getRow()) {
+			
 			targetColumn++;
 			targetRow--;
 
 			currentLoc.setRow(targetRow);
 			currentLoc.setColumn(targetColumn);
 
-			if (currentLoc.equals(destination))
+			if (currentLoc.equals(destination)) {
 				return true;
-
-			return !(board.getSquareAtLoc(targetRow, targetColumn).isOccupied())
-					&& isMoveableBishop(destination, currentLoc);
+			}
+			
+			return !(board.getSquareAtLoc(targetRow, targetColumn).isOccupied()) && isMoveableBishop(destination, currentLoc);
+		
 		} else if (currentLoc.getColumn() > destination.getColumn() && currentLoc.getRow() < destination.getRow()) {
+			
 			targetColumn--;
 			targetRow++;
 
 			currentLoc.setRow(targetRow);
 			currentLoc.setColumn(targetColumn);
 
-			if (currentLoc.equals(destination))
+			if (currentLoc.equals(destination)) {
 				return true;
-
-			return !(board.getSquareAtLoc(targetRow, targetColumn).isOccupied())
-					&& isMoveableBishop(destination, currentLoc);
+			}
+			
+			return !(board.getSquareAtLoc(targetRow, targetColumn).isOccupied()) && isMoveableBishop(destination, currentLoc);
+		
 		} else if (currentLoc.getColumn() > destination.getColumn() && currentLoc.getRow() > destination.getRow()) {
+		
 			targetColumn--;
 			targetRow--;
 
 			currentLoc.setRow(targetRow);
 			currentLoc.setColumn(targetColumn);
 
-			if (currentLoc.equals(destination))
+			if (currentLoc.equals(destination)) {
 				return true;
-
-			return !(board.getSquareAtLoc(targetRow, targetColumn).isOccupied())
-					&& isMoveableBishop(destination, currentLoc);
+			}
+			
+			return !(board.getSquareAtLoc(targetRow, targetColumn).isOccupied()) && isMoveableBishop(destination, currentLoc);
+		
 		}
 
 		return false;
@@ -212,18 +213,14 @@ public class MovementManager {
 	// find if king's path is clear, check all possibilities one by one
 	private boolean isMoveableKing(Square destination, Square currentLoc) {
 
-		if (destination.getColumn() == currentLoc.getColumn()
-				&& Math.abs(destination.getRow() - currentLoc.getRow()) == 1)
+		if (destination.getColumn() == currentLoc.getColumn() && Math.abs(destination.getRow() - currentLoc.getRow()) == 1) {
 			return true;
-
-		else if ((Math.abs(destination.getColumn() - currentLoc.getColumn()) == 1)
-				&& destination.getRow() == currentLoc.getRow())
+		} else if ((Math.abs(destination.getColumn() - currentLoc.getColumn()) == 1) && destination.getRow() == currentLoc.getRow()) {
 			return true;
-
-		else if ((Math.abs(currentLoc.getColumn() - destination.getColumn()) == 1)
-				&& (Math.abs(currentLoc.getRow() - destination.getRow()) == 1))
+		} else if ((Math.abs(currentLoc.getColumn() - destination.getColumn()) == 1) && (Math.abs(currentLoc.getRow() - destination.getRow()) == 1)) {
 			return true;
-
+		}
+		
 		return false;
 
 	}
@@ -232,23 +229,17 @@ public class MovementManager {
 
 		if (color == Color.WHITE) {
 
-			if ((Math.abs(destination.getColumn() - currentLoc.getColumn())) == 1
-					&& ((destination.getRow() - currentLoc.getRow()) == 1)) {
+			if ((Math.abs(destination.getColumn() - currentLoc.getColumn())) == 1 && ((destination.getRow() - currentLoc.getRow()) == 1)) {
 				return destination.isOccupied();
-			} else if ((destination.getRow() - currentLoc.getRow() == 1)
-					&& (destination.getColumn() == currentLoc.getColumn())) {
+			} else if ((destination.getRow() - currentLoc.getRow() == 1) && (destination.getColumn() == currentLoc.getColumn())) {
 				return !destination.isOccupied();
 			}
 
 		} else {
 
-			if (Math.abs(destination.getColumn() - currentLoc.getColumn()) == 1
-					&& currentLoc.getRow() - destination.getRow() == 1) {
+			if (Math.abs(destination.getColumn() - currentLoc.getColumn()) == 1 && currentLoc.getRow() - destination.getRow() == 1) {
 				return destination.isOccupied();
-			}
-
-			else if ((currentLoc.getRow() - destination.getRow() == 1)
-					&& (destination.getColumn() == currentLoc.getColumn())) {
+			} else if ((currentLoc.getRow() - destination.getRow() == 1) && (destination.getColumn() == currentLoc.getColumn())) {
 				return !destination.isOccupied();
 			}
 
@@ -280,23 +271,26 @@ public class MovementManager {
 	}
 
 	public boolean isPromoted(Pawn pawn) {
-		if (pawn.getPieceColor() == Color.WHITE && pawn.getCurrentLocation().getRow() == 0)
+		if (pawn.getPieceColor() == Color.WHITE && pawn.getCurrentLocation().getRow() == 0) {
 			return true;
-		if (pawn.getPieceColor() == Color.BLACK && pawn.getCurrentLocation().getRow() == 7)
+		}
+		if (pawn.getPieceColor() == Color.BLACK && pawn.getCurrentLocation().getRow() == 7) {
 			return true;
+		}
 		return false;
 	}
 
 	public boolean isRookable(King king, Rook rook) {
 
-		if (king.isMoved() == true)
+		if (king.isMoved() == true) {
 			return false;
-		if (rook.isMoved() == true)
+		}
+		if (rook.isMoved() == true) {
 			return false;
-
-		if (isMoveableRook(king.getCurrentLocation(), rook.getCurrentLocation()))
+		}
+		if (isMoveableRook(king.getCurrentLocation(), rook.getCurrentLocation())) {
 			return true;
-
+		}
 		return false;
 
 	}

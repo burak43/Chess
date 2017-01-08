@@ -13,10 +13,11 @@ public class Knight extends Piece {
 	 */
 	public Knight(Color color, Square location) {
 		super(color, location);
-		if (color == Color.WHITE)
+		if (color == Color.WHITE) {
 			this.setImage(new ImageIcon("icons/w_knight.png", "White Knight Icon"));
-		else
+		} else {
 			this.setImage(new ImageIcon("icons/b_knight.png", "Black Knight Icon"));
+		}
 	}
 
 }

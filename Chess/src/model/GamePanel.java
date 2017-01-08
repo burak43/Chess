@@ -29,48 +29,50 @@ public class GamePanel {
 	public static void draw(Graphics g, MainMenuPanel mmp) {
 
 		g.drawImage((new ImageIcon(mmp.sett_brownback ? "icons/checkered2.png" : "icons/checkered1.png")).getImage(), 0, 0, 720, 720, null);
-
-		g.setColor(new Color(0.66f, 0.76f, 0.07f, 1.0f));
+	
 		if (mmp.c1 && mmp.g.gameManager.board.getSquareAtLoc(mmp.c1_i, mmp.c1_c).isOccupied()) {
-			g.fillRect(gx2(mmp.c1_c), gy2(mmp.c1_i), 90, 90);
-		}
-		
-		g.setColor(new Color(0.93f, 0.28f, 0.37f, 1.0f));
-		if (mmp.c1 && mmp.sett_showlegal && mmp.g.gameManager.board.getSquareAtLoc(mmp.c1_i, mmp.c1_c).isOccupied()) {
-			String[][] possible = mmp.g.getPossible(mmp.c1_c, mmp.c1_i);
-			System.out.println("show legal moves of " + mmp.c1_c + " - " + mmp.c1_i);
-			for (int i = 0; i < possible.length; i++) {
-				if (possible[i][0] == null) {
-					break;
+			if (((mmp.g.gameManager.board.getSquareAtLoc(mmp.c1_i, mmp.c1_c).getPlacedPiece().getPieceColor() == model.Color.BLACK) && mmp.turn_black) || ((mmp.g.gameManager.board.getSquareAtLoc(mmp.c1_i, mmp.c1_c).getPlacedPiece().getPieceColor() == model.Color.WHITE) && !mmp.turn_black)) {	
+				g.setColor(new Color(0.66f, 0.76f, 0.07f, 1.0f));
+				g.fillRect(gx2(mmp.c1_c), gy2(mmp.c1_i), 90, 90);
+				if (mmp.sett_showlegal) {
+					g.setColor(new Color(0.93f, 0.28f, 0.37f, 1.0f));
+					String[][] possible = mmp.g.getPossible(mmp.c1_c, mmp.c1_i);
+					for (int i = 0; i < possible.length; i++) {
+						if (possible[i][0] == null) {
+							break;
+						}
+						g.fillRect(gx2(possible[i][0].charAt(0)), gy2(Integer.parseInt(possible[i][1])), 90, 90);
+					}
 				}
-				//System.out.println("\t" + possible[i][0] + "_" + possible[i][1].charAt(0));
-				g.fillRect(gx2(possible[i][0].charAt(0)), gy2(Integer.parseInt(possible[i][1])), 90, 90);
-			}			
+			}
 		}
 				
 		if (mmp.c2) {
 			mmp.c2 = false;
 			if (mmp.g.gameManager.board.getSquareAtLoc(mmp.c1_i, mmp.c1_c).isOccupied()) {
-				System.out.println("move " + mmp.c1_c + " - " + mmp.c1_i + " to " + mmp.c2_c + " - " + mmp.c2_i);
-				mmp.g.move(mmp.c1_c, mmp.c1_i, mmp.c2_c, mmp.c2_i);
+				if (((mmp.g.gameManager.board.getSquareAtLoc(mmp.c1_i, mmp.c1_c).getPlacedPiece().getPieceColor() == model.Color.BLACK) && mmp.turn_black) || ((mmp.g.gameManager.board.getSquareAtLoc(mmp.c1_i, mmp.c1_c).getPlacedPiece().getPieceColor() == model.Color.WHITE) && !mmp.turn_black)) {
+					if (mmp.g.move(mmp.c1_c, mmp.c1_i, mmp.c2_c, mmp.c2_i)) {
+						mmp.turn_black = mmp.turn_black ? false : true;
+					}
+				}
 			}
 		}
 
 		Graphics2D g2 = (Graphics2D)g;
-		
 		String[][] piecesPos = mmp.g.getPiecesPositions();
 		for (int i = 0; i < piecesPos.length; i++) {
 			if (piecesPos[i][0] != null) {
-				
-				// turn kimdeyse digerini seffaf
-
-				g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (piecesPos[i][3] == "w") ? 0.5f : 1.0f));
-				
-				g.drawImage((new ImageIcon("icons/" + piecesPos[i][3] + "_" + piecesPos[i][0].split(Pattern.quote("."))[1].toLowerCase() + ".png")).getImage(), gx(piecesPos[i][1].charAt(0)), gy(Integer.parseInt(piecesPos[i][2])), 60, 60, null);
-			
+				g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, ((piecesPos[i][3] == "b" && mmp.turn_black) || (piecesPos[i][3] == "w" && !mmp.turn_black)) ? 1.0f : 0.5f));
+				g.drawImage((new ImageIcon("icons/" + piecesPos[i][3] + "_" + piecesPos[i][0].split(Pattern.quote("."))[1].toLowerCase() + ".png")).getImage(), gx(piecesPos[i][1].charAt(0)), gy(Integer.parseInt(piecesPos[i][2])), 60, 60, null);			
 			}
 		}
-				
+		
+		if (mmp.g.getStatus() == 1) {
+			System.out.println("win 1");
+		} else if (mmp.g.getStatus() == 2) {
+			System.out.println("win 2");
+		}
+		
 	}
 
 }

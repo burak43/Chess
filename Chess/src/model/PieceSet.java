@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 
 public class PieceSet {
+
 	private ArrayList<Piece> pieces;
 	private Color playerColor;
 
